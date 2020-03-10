@@ -8,7 +8,6 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -19,6 +18,7 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
+import Header from '../../components/Header';
 import CenteredContentWrapper from '../../components/CenteredContentWrapper';
 import CardButton from '../../components/CardButton';
 import OptionsWrapper from '../../components/OptionsWrapper';
@@ -33,7 +33,7 @@ export function MainMenu() {
         <title>MainMenu</title>
         <meta name="description" content="Description of MainMenu" />
       </Helmet>
-      
+      <Header {...messages.greVerbalHeader} />
       <OptionsWrapper>
         <CardButton> 
           <h1>Text Completion</h1>
@@ -41,8 +41,10 @@ export function MainMenu() {
         <CardButton> 
           <h1>Sentence Equivalence</h1>
         </CardButton>
+        <CardButton> 
+          <h1>Reading Comprehension</h1>
+        </CardButton>
       </OptionsWrapper>
-      {/* <FormattedMessage {...messages.header} /> */}
     </CenteredContentWrapper>
   );
 }

@@ -11,7 +11,7 @@ const CardButton = styled.div`
   padding: 1rem;
   background-color: aquamarine;
   border-radius: 1px;
-  width: 240px;
+  width: 260px;
   max-width: 400px;
   max-height: 120px;
   display: flex;

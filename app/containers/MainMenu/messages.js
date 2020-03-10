@@ -9,8 +9,8 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.containers.MainMenu';
 
 export default defineMessages({
-  header: {
+  greVerbalHeader: {
     id: `${scope}.header`,
-    defaultMessage: 'This is the MainMenu container!',
+    title: `GRE Verbal`,
   },
 });
