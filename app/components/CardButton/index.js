@@ -5,8 +5,9 @@
  */
 
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const CardButton = styled.div`
+const CardButton = styled(Link)`
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.25), 0 2px 6px 0 rgba(0,0,0,0.25);
   padding: 1rem;
   background-color: aquamarine;

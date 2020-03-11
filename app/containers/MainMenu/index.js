@@ -35,7 +35,7 @@ export function MainMenu() {
       </Helmet>
       <Header {...messages.greVerbalHeader} />
       <OptionsWrapper>
-        <CardButton> 
+        <CardButton to="/quiz/TC"> 
           <h1>Text Completion</h1>
         </CardButton>
         <CardButton> 
