@@ -24,6 +24,11 @@ const CardButton = styled.div`
     background-color: rebeccapurple;
     color: white;
   }
+
+  /* stylelint-disable property-no-vendor-prefix */
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 `;
 
 export default CardButton;
