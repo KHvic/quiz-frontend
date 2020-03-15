@@ -35,13 +35,13 @@ export function MainMenu() {
       </Helmet>
       <Header {...messages.greVerbalHeader} />
       <OptionsWrapper>
-        <CardButton to="/quiz/TC"> 
+        <CardButton to="/quiz/TC1">
           <h1>Text Completion</h1>
         </CardButton>
-        <CardButton> 
+        <CardButton>
           <h1>Sentence Equivalence</h1>
         </CardButton>
-        <CardButton> 
+        <CardButton>
           <h1>Reading Comprehension</h1>
         </CardButton>
       </OptionsWrapper>

@@ -4,26 +4,33 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import querySearch from "query-string";
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectQuizPage from './selectors';
+import { setSubcat } from './actions';
+import {
+  makeSelectQuestions,
+  makeSelectSubcat,
+  makeSelectCurrentQuestion,
+  makeSelectAnswers,
+} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export function QuizPage(props) {
+export function QuizPage({ subcat, changeSubcat, match }) {
   useInjectReducer({ key: 'quizPage', reducer });
   useInjectSaga({ key: 'quizPage', saga });
 
-  const subcat = props.match.params.subcat;
+  useEffect(() => {
+    changeSubcat(match.params.subcat);
+  }, []);
+
   return (
     <div>
       <Helmet>
@@ -36,16 +43,21 @@ export function QuizPage(props) {
 }
 
 QuizPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  subcat: PropTypes.string,
+  changeSubcat: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  quizPage: makeSelectQuizPage(),
+  questions: makeSelectQuestions(),
+  answers: makeSelectAnswers(),
+  questionIndex: makeSelectCurrentQuestion(),
+  subcat: makeSelectSubcat(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    changeSubcat: subcat => dispatch(setSubcat(subcat)),
   };
 }
 
@@ -54,4 +66,7 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(QuizPage);
+export default compose(
+  withConnect,
+  memo,
+)(QuizPage);

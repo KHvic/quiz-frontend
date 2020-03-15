@@ -7,19 +7,40 @@ import { initialState } from './reducer';
 
 const selectQuizPageDomain = state => state.quizPage || initialState;
 
-/**
- * Other specific selectors
- */
-
-/**
- * Default selector used by QuizPage
- */
-
-const makeSelectQuizPage = () =>
+const makeSelectSubcat = () =>
   createSelector(
     selectQuizPageDomain,
-    substate => substate,
+    substate => substate.subcat,
   );
 
-export default makeSelectQuizPage;
-export { selectQuizPageDomain };
+const makeSelectAnswers = () =>
+  createSelector(
+    selectQuizPageDomain,
+    substate => substate.answers,
+  );
+
+const makeSelectQuestions = () =>
+  createSelector(
+    selectQuizPageDomain,
+    substate => substate.questions,
+  );
+
+const makeSelectCurrentQuestion = () =>
+  createSelector(
+    selectQuizPageDomain,
+    substate => substate.currentQuestion,
+  );
+
+const makeSelectError = () =>
+  createSelector(
+    selectQuizPageDomain,
+    substate => substate.error,
+  );
+
+export {
+  makeSelectSubcat,
+  makeSelectAnswers,
+  makeSelectQuestions,
+  makeSelectCurrentQuestion,
+  makeSelectError,
+};

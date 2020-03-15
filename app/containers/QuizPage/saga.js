@@ -1,6 +1,24 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
+import request from 'utils/request';
+import { SET_SUBCAT } from './constants';
+import { questionsLoaded, questionsLoadingError } from './actions';
 
-// Individual exports for testing
-export default function* quizPageSaga() {
-  // See example in containers/HomePage/saga.js
+import { makeSelectSubcat } from './selectors';
+
+export function* getQuestions() {
+  const subcat = yield select(makeSelectSubcat());
+  const requestURL = `http://ec2-52-14-124-214.us-east-2.compute.amazonaws.com:8080/api/v1/questions/${subcat}?k=10`;
+  try {
+    const questions = yield call(request, requestURL);
+    yield put(questionsLoaded(questions.data));
+  } catch (err) {
+    yield put(questionsLoadingError(err));
+  }
+}
+
+/**
+ * Root saga manages watcher lifecycle
+ */
+export default function* questionsData() {
+  yield takeLatest(SET_SUBCAT, getQuestions);
 }

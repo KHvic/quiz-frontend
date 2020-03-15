@@ -4,10 +4,29 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import {
+  SET_SUBCAT,
+  LOAD_QUESTIONS_SUCCESS,
+  LOAD_QUESTIONS_ERROR,
+} from './constants';
 
-export function defaultAction() {
+export function setSubcat(subcat) {
   return {
-    type: DEFAULT_ACTION,
+    type: SET_SUBCAT,
+    subcat,
+  };
+}
+
+export function questionsLoaded(questions) {
+  return {
+    type: LOAD_QUESTIONS_SUCCESS,
+    questions,
+  };
+}
+
+export function questionsLoadingError(error) {
+  return {
+    type: LOAD_QUESTIONS_ERROR,
+    error,
   };
 }
