@@ -30,6 +30,7 @@ const quizPageReducer = (state = initialState, action) =>
         break;
       case LOAD_QUESTIONS_SUCCESS:
         draft.questions = action.questions;
+        draft.currentQuestion = 0;
         break;
     }
   });

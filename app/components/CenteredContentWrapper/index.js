@@ -12,7 +12,7 @@ const CenteredContentWrapper = styled.div`
   width: 100vw;
   height: 100vh;
 
-  @media (max-width: 800px) and (orientation: landscape){
+  @media (max-width: 800px) and (orientation: landscape) {
     display: block;
     height: auto;
   }

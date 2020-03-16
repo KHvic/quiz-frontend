@@ -22,8 +22,9 @@ import {
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import QuizContainer from '../../components/QuizContainer';
 
-export function QuizPage({ subcat, changeSubcat, match }) {
+export function QuizPage({ changeSubcat, match, questions, questionIndex }) {
   useInjectReducer({ key: 'quizPage', reducer });
   useInjectSaga({ key: 'quizPage', saga });
 
@@ -37,15 +38,20 @@ export function QuizPage({ subcat, changeSubcat, match }) {
         <title>QuizPage</title>
         <meta name="description" content="Description of QuizPage" />
       </Helmet>
-      <h1>{subcat} Quiz Page</h1>
+      <h1>Quiz Page</h1>
+      {/* TODO: Add error handling */}
+      {questionIndex < questions.length && (
+        <QuizContainer {...questions[questionIndex]} />
+      )}
     </div>
   );
 }
 
 QuizPage.propTypes = {
-  subcat: PropTypes.string,
   changeSubcat: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  questions: PropTypes.array,
+  questionIndex: PropTypes.number,
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
   @import url(https://fonts.googleapis.com/css?family=Muli|Ovo);
+  @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
   html,
   body {
