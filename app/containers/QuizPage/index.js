@@ -13,18 +13,27 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { setSubcat } from './actions';
+import { setSubcat, selectQuestionChoice } from './actions';
 import {
   makeSelectQuestions,
   makeSelectSubcat,
   makeSelectCurrentQuestion,
-  makeSelectAnswers,
+  makeSelectSelections,
+  makeSelectReviewMode,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import QuizContainer from '../../components/QuizContainer';
 
-export function QuizPage({ changeSubcat, match, questions, questionIndex }) {
+export function QuizPage({
+  changeSubcat,
+  selectOptionChoice,
+  match,
+  questions,
+  selections,
+  questionIndex,
+  reviewMode,
+}) {
   useInjectReducer({ key: 'quizPage', reducer });
   useInjectSaga({ key: 'quizPage', saga });
 
@@ -41,7 +50,12 @@ export function QuizPage({ changeSubcat, match, questions, questionIndex }) {
       <h1>Quiz Page</h1>
       {/* TODO: Add error handling */}
       {questionIndex < questions.length && (
-        <QuizContainer {...questions[questionIndex]} />
+        <QuizContainer
+          {...questions[questionIndex]}
+          onSelectChoice={selectOptionChoice}
+          reviewMode={reviewMode}
+          selection={selections[questionIndex]}
+        />
       )}
     </div>
   );
@@ -49,21 +63,27 @@ export function QuizPage({ changeSubcat, match, questions, questionIndex }) {
 
 QuizPage.propTypes = {
   changeSubcat: PropTypes.func.isRequired,
+  selectOptionChoice: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   questions: PropTypes.array,
+  selections: PropTypes.array,
   questionIndex: PropTypes.number,
+  reviewMode: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
   questions: makeSelectQuestions(),
-  answers: makeSelectAnswers(),
+  selections: makeSelectSelections(),
   questionIndex: makeSelectCurrentQuestion(),
   subcat: makeSelectSubcat(),
+  reviewMode: makeSelectReviewMode(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     changeSubcat: subcat => dispatch(setSubcat(subcat)),
+    selectOptionChoice: (optionIndex, choice) =>
+      dispatch(selectQuestionChoice(optionIndex, choice)),
   };
 }
 

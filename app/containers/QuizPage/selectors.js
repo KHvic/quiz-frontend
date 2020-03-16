@@ -13,10 +13,10 @@ const makeSelectSubcat = () =>
     substate => substate.subcat,
   );
 
-const makeSelectAnswers = () =>
+const makeSelectSelections = () =>
   createSelector(
     selectQuizPageDomain,
-    substate => substate.answers,
+    substate => substate.selections,
   );
 
 const makeSelectQuestions = () =>
@@ -31,6 +31,12 @@ const makeSelectCurrentQuestion = () =>
     substate => substate.currentQuestion,
   );
 
+const makeSelectReviewMode = () =>
+  createSelector(
+    selectQuizPageDomain,
+    substate => substate.reviewMode,
+  );
+
 const makeSelectError = () =>
   createSelector(
     selectQuizPageDomain,
@@ -39,8 +45,9 @@ const makeSelectError = () =>
 
 export {
   makeSelectSubcat,
-  makeSelectAnswers,
+  makeSelectSelections,
   makeSelectQuestions,
   makeSelectCurrentQuestion,
+  makeSelectReviewMode,
   makeSelectError,
 };
