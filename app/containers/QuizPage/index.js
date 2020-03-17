@@ -24,6 +24,7 @@ import {
 import reducer from './reducer';
 import saga from './saga';
 import QuizContainer from '../../components/QuizContainer';
+import Pagination from '../../components/Pagination';
 
 export function QuizPage({
   changeSubcat,
@@ -50,12 +51,18 @@ export function QuizPage({
       <h1>Quiz Page</h1>
       {/* TODO: Add error handling */}
       {questionIndex < questions.length && (
-        <QuizContainer
-          {...questions[questionIndex]}
-          onSelectChoice={selectOptionChoice}
-          reviewMode={reviewMode}
-          selection={selections[questionIndex]}
-        />
+        <div>
+          <QuizContainer
+            {...questions[questionIndex]}
+            onSelectChoice={selectOptionChoice}
+            reviewMode={reviewMode}
+            selection={selections[questionIndex]}
+          />
+          <Pagination
+            questionIndex={questionIndex}
+            questionCount={questions.length}
+          />
+        </div>
       )}
     </div>
   );
