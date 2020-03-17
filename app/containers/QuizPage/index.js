@@ -13,7 +13,12 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { setSubcat, selectQuestionChoice } from './actions';
+import {
+  setSubcat,
+  selectQuestionChoice,
+  switchQuestion,
+  submitSelections,
+} from './actions';
 import {
   makeSelectQuestions,
   makeSelectSubcat,
@@ -34,6 +39,8 @@ export function QuizPage({
   selections,
   questionIndex,
   reviewMode,
+  selectQuestion,
+  submitQuiz,
 }) {
   useInjectReducer({ key: 'quizPage', reducer });
   useInjectSaga({ key: 'quizPage', saga });
@@ -61,6 +68,8 @@ export function QuizPage({
           <Pagination
             questionIndex={questionIndex}
             questionCount={questions.length}
+            submit={submitQuiz}
+            selectPage={selectQuestion}
           />
         </div>
       )}
@@ -76,6 +85,8 @@ QuizPage.propTypes = {
   selections: PropTypes.array,
   questionIndex: PropTypes.number,
   reviewMode: PropTypes.bool,
+  submitQuiz: PropTypes.func,
+  selectQuestion: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -91,6 +102,9 @@ function mapDispatchToProps(dispatch) {
     changeSubcat: subcat => dispatch(setSubcat(subcat)),
     selectOptionChoice: (optionIndex, choice) =>
       dispatch(selectQuestionChoice(optionIndex, choice)),
+    selectQuestion: nextQuestionIndex =>
+      dispatch(switchQuestion(nextQuestionIndex)),
+    submitQuiz: () => dispatch(submitSelections()),
   };
 }
 

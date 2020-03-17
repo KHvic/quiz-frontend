@@ -25,7 +25,8 @@ function QuizContainer({
       <McqsWrapper>
         {options.map((option, idx) => (
           <McqSelect
-            key={selection[idx]}
+            // eslint-disable-next-line react/no-array-index-key
+            key={idx}
             choices={option}
             answer={answer[idx]}
             selected={selection[idx]}

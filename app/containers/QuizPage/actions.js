@@ -9,6 +9,8 @@ import {
   LOAD_QUESTIONS_SUCCESS,
   LOAD_QUESTIONS_ERROR,
   SELECT_QUESTION_CHOICE,
+  SWITCH_QUESTION,
+  SUBMIT_SELECTIONS,
 } from './constants';
 
 export function setSubcat(subcat) {
@@ -37,5 +39,18 @@ export function selectQuestionChoice(optionIndex, choice) {
     type: SELECT_QUESTION_CHOICE,
     optionIndex,
     choice,
+  };
+}
+
+export function switchQuestion(nextQuestionIndex) {
+  return {
+    type: SWITCH_QUESTION,
+    nextQuestionIndex,
+  };
+}
+
+export function submitSelections() {
+  return {
+    type: SUBMIT_SELECTIONS,
   };
 }

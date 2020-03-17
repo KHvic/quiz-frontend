@@ -9,6 +9,8 @@ import {
   LOAD_QUESTIONS_ERROR,
   LOAD_QUESTIONS_SUCCESS,
   SELECT_QUESTION_CHOICE,
+  SWITCH_QUESTION,
+  SUBMIT_SELECTIONS,
 } from './constants';
 
 export const initialState = {
@@ -51,6 +53,14 @@ const quizPageReducer = (state = initialState, action) =>
         }
         break;
       }
+      case SWITCH_QUESTION:
+        draft.currentQuestion = action.nextQuestionIndex;
+        break;
+      case SUBMIT_SELECTIONS:
+        // TODO: add proper submission logic at action.js
+        draft.reviewMode = true;
+        draft.currentQuestion = 0;
+        break;
     }
   });
 
