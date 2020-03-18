@@ -37,7 +37,7 @@ function Pagination({ questionIndex, questionCount, selectPage, submit }) {
   return (
     <CenteredContentWrapper>
       {nextButton}
-      <PaginationWrapper>{pages}</PaginationWrapper>
+      <PaginationWrapper>{pages.length > 1 && pages}</PaginationWrapper>
     </CenteredContentWrapper>
   );
 }
