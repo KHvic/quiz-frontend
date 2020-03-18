@@ -1,6 +1,7 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest, all } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import request from 'utils/request';
-import { SET_SUBCAT } from './constants';
+import { SET_SUBCAT, QUIT } from './constants';
 import { questionsLoaded, questionsLoadingError } from './actions';
 
 import { makeSelectSubcat, makeSelectQuestionCount } from './selectors';
@@ -17,9 +18,16 @@ export function* getQuestions() {
   }
 }
 
+export function* toMainMenu() {
+  yield put(push('/'));
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
 export default function* questionsData() {
-  yield takeLatest(SET_SUBCAT, getQuestions);
+  yield all([
+    takeLatest(SET_SUBCAT, getQuestions),
+    takeLatest(QUIT, toMainMenu),
+  ]);
 }

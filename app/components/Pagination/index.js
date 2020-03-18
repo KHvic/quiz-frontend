@@ -6,12 +6,18 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DoneText, NextText } from './constants';
+import { DoneText, NextText, ExitText } from './constants';
 import CenteredContentWrapper from '../CenteredContentWrapper';
 import PaginationWrapper from '../PaginationWrapper';
 import Button from '../Button';
 
-function Pagination({ questionIndex, questionCount, selectPage, submit }) {
+function Pagination({
+  questionIndex,
+  questionCount,
+  selectPage,
+  submit,
+  reviewMode,
+}) {
   const pages = [];
   for (let i = 1; i <= questionCount; i += 1) {
     pages.push(
@@ -23,22 +29,28 @@ function Pagination({ questionIndex, questionCount, selectPage, submit }) {
       />,
     );
   }
-  const nextButton =
-    questionIndex === questionCount - 1 ? (
-      <Button text={DoneText} enabled click={submit} />
-    ) : (
-      <Button
-        text={NextText}
-        enabled
-        click={() => selectPage(questionIndex + 1)}
-      />
-    );
 
   return (
     <CenteredContentWrapper>
-      {nextButton}
+      {getButton(
+        submit,
+        () => selectPage(questionIndex + 1),
+        questionIndex === questionCount - 1,
+        reviewMode,
+      )}
       <PaginationWrapper>{pages.length > 1 && pages}</PaginationWrapper>
     </CenteredContentWrapper>
+  );
+}
+
+function getButton(submit, nextPage, isLast, reviewMode) {
+  if (reviewMode) {
+    return <Button text={ExitText} enabled click={submit} />;
+  }
+  return isLast ? (
+    <Button text={DoneText} enabled click={submit} />
+  ) : (
+    <Button text={NextText} enabled click={nextPage} />
   );
 }
 
@@ -47,6 +59,7 @@ Pagination.propTypes = {
   questionCount: PropTypes.number,
   submit: PropTypes.func,
   selectPage: PropTypes.func,
+  reviewMode: PropTypes.bool,
 };
 
 export default Pagination;

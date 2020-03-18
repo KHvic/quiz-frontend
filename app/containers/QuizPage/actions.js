@@ -11,6 +11,7 @@ import {
   SELECT_QUESTION_CHOICE,
   SWITCH_QUESTION,
   SUBMIT_SELECTIONS,
+  QUIT,
 } from './constants';
 
 export function setSubcat(subcat, count) {
@@ -53,5 +54,11 @@ export function switchQuestion(nextQuestionIndex) {
 export function submitSelections() {
   return {
     type: SUBMIT_SELECTIONS,
+  };
+}
+
+export function quit() {
+  return {
+    type: QUIT,
   };
 }

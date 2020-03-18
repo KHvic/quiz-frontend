@@ -19,6 +19,7 @@ import {
   selectQuestionChoice,
   switchQuestion,
   submitSelections,
+  quit,
 } from './actions';
 import {
   makeSelectQuestions,
@@ -45,6 +46,7 @@ export function QuizPage({
   reviewMode,
   selectQuestion,
   submitQuiz,
+  exit,
 }) {
   useInjectReducer({ key: 'quizPage', reducer });
   useInjectSaga({ key: 'quizPage', saga });
@@ -54,7 +56,9 @@ export function QuizPage({
     changeSubcat(match.params.subcat, params.count);
   }, []);
   const leftTitle = messages.catMap[match.params.subcat];
-  const rightTitle = `Q${questionIndex + 1}/${questions.length}  `;
+  const rightTitle = reviewMode
+    ? `Reviewing Quiz  `
+    : `Q${questionIndex + 1}/${questions.length}  `;
   return (
     <div>
       <Helmet>
@@ -74,8 +78,9 @@ export function QuizPage({
           <Pagination
             questionIndex={questionIndex}
             questionCount={questions.length}
-            submit={submitQuiz}
+            submit={reviewMode ? exit : submitQuiz}
             selectPage={selectQuestion}
+            reviewMode={reviewMode}
           />
         </div>
       )}
@@ -94,6 +99,7 @@ QuizPage.propTypes = {
   reviewMode: PropTypes.bool,
   submitQuiz: PropTypes.func,
   selectQuestion: PropTypes.func,
+  exit: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -112,6 +118,7 @@ function mapDispatchToProps(dispatch) {
     selectQuestion: nextQuestionIndex =>
       dispatch(switchQuestion(nextQuestionIndex)),
     submitQuiz: () => dispatch(submitSelections()),
+    exit: () => dispatch(quit()),
   };
 }
 
