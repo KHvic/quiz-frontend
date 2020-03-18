@@ -13,10 +13,11 @@ import {
   SUBMIT_SELECTIONS,
 } from './constants';
 
-export function setSubcat(subcat) {
+export function setSubcat(subcat, count) {
   return {
     type: SET_SUBCAT,
     subcat,
+    count,
   };
 }
 

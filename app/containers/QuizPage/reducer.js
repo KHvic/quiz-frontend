@@ -15,6 +15,7 @@ import {
 
 export const initialState = {
   questions: [],
+  questionCount: 0,
   subcat: '',
   currentQuestion: 0,
   selections: [],
@@ -28,6 +29,7 @@ const quizPageReducer = (state = initialState, action) =>
     switch (action.type) {
       case SET_SUBCAT:
         draft.subcat = action.subcat;
+        draft.questionCount = action.count;
         break;
       case LOAD_QUESTIONS_ERROR:
         draft.error = action.error;

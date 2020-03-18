@@ -13,6 +13,7 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import queryString from 'query-string';
 import {
   setSubcat,
   selectQuestionChoice,
@@ -37,6 +38,7 @@ export function QuizPage({
   changeSubcat,
   selectOptionChoice,
   match,
+  location,
   questions,
   selections,
   questionIndex,
@@ -48,7 +50,8 @@ export function QuizPage({
   useInjectSaga({ key: 'quizPage', saga });
 
   useEffect(() => {
-    changeSubcat(match.params.subcat);
+    const params = queryString.parse(location.search);
+    changeSubcat(match.params.subcat, params.count);
   }, []);
   const leftTitle = messages.catMap[match.params.subcat];
   const rightTitle = `Q${questionIndex + 1}/${questions.length}  `;
@@ -84,6 +87,7 @@ QuizPage.propTypes = {
   changeSubcat: PropTypes.func.isRequired,
   selectOptionChoice: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  location: PropTypes.object,
   questions: PropTypes.array,
   selections: PropTypes.array,
   questionIndex: PropTypes.number,
@@ -102,7 +106,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeSubcat: subcat => dispatch(setSubcat(subcat)),
+    changeSubcat: (subcat, count) => dispatch(setSubcat(subcat, count)),
     selectOptionChoice: (optionIndex, choice) =>
       dispatch(selectQuestionChoice(optionIndex, choice)),
     selectQuestion: nextQuestionIndex =>

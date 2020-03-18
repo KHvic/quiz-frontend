@@ -3,11 +3,12 @@ import request from 'utils/request';
 import { SET_SUBCAT } from './constants';
 import { questionsLoaded, questionsLoadingError } from './actions';
 
-import { makeSelectSubcat } from './selectors';
+import { makeSelectSubcat, makeSelectQuestionCount } from './selectors';
 
 export function* getQuestions() {
   const subcat = yield select(makeSelectSubcat());
-  const requestURL = `http://ec2-52-14-124-214.us-east-2.compute.amazonaws.com:8080/api/v1/category/${subcat}/questions?count=10`;
+  const count = yield select(makeSelectQuestionCount());
+  const requestURL = `http://ec2-52-14-124-214.us-east-2.compute.amazonaws.com:8080/api/v1/category/${subcat}/questions?count=${count}`;
   try {
     const questions = yield call(request, requestURL);
     yield put(questionsLoaded(questions.data));

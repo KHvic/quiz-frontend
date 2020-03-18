@@ -37,6 +37,12 @@ const makeSelectReviewMode = () =>
     substate => substate.reviewMode,
   );
 
+const makeSelectQuestionCount = () =>
+  createSelector(
+    selectQuizPageDomain,
+    substate => substate.questionCount,
+  );
+
 const makeSelectError = () =>
   createSelector(
     selectQuizPageDomain,
@@ -49,5 +55,6 @@ export {
   makeSelectQuestions,
   makeSelectCurrentQuestion,
   makeSelectReviewMode,
+  makeSelectQuestionCount,
   makeSelectError,
 };
