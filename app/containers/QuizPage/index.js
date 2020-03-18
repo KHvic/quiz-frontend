@@ -30,6 +30,8 @@ import reducer from './reducer';
 import saga from './saga';
 import QuizContainer from '../../components/QuizContainer';
 import Pagination from '../../components/Pagination';
+import Header from '../../components/Header';
+import messages from './messages';
 
 export function QuizPage({
   changeSubcat,
@@ -48,14 +50,15 @@ export function QuizPage({
   useEffect(() => {
     changeSubcat(match.params.subcat);
   }, []);
-
+  const leftTitle = messages.catMap[match.params.subcat];
+  const rightTitle = `Q${questionIndex + 1}/${questions.length}  `;
   return (
     <div>
       <Helmet>
         <title>QuizPage</title>
         <meta name="description" content="Description of QuizPage" />
       </Helmet>
-      <h1>Quiz Page</h1>
+      <Header title={leftTitle} title2={rightTitle} />
       {/* TODO: Add error handling */}
       {questionIndex < questions.length && (
         <div>

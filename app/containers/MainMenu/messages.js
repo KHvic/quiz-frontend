@@ -11,6 +11,6 @@ export const scope = 'app.containers.MainMenu';
 export default defineMessages({
   greVerbalHeader: {
     id: `${scope}.header`,
-    title: `GRE Verbal`,
+    title: `GRE Verbal Test (10 Questions per test)`,
   },
 });

@@ -1,16 +1,15 @@
 /**
  *
- * CenteredContentWrapper
+ * ColumnWrapper
  *
  */
 
 import styled from 'styled-components';
 
-const CenteredContentWrapper = styled.div`
+const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
+  ${'' /* width: fit-content; */}
   height: auto;
 
   @media (max-width: 800px) and (orientation: landscape) {
@@ -19,4 +18,4 @@ const CenteredContentWrapper = styled.div`
   }
 `;
 
-export default CenteredContentWrapper;
+export default ColumnWrapper;

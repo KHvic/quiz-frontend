@@ -19,7 +19,7 @@ import saga from './saga';
 import messages from './messages';
 
 import Header from '../../components/Header';
-import CenteredContentWrapper from '../../components/CenteredContentWrapper';
+import ColumnWrapper from '../../components/ColumnWrapper';
 import CardButton from '../../components/CardButton';
 import OptionsWrapper from '../../components/OptionsWrapper';
 
@@ -28,7 +28,7 @@ export function MainMenu() {
   useInjectSaga({ key: 'mainMenu', saga });
 
   return (
-    <CenteredContentWrapper>
+    <ColumnWrapper>
       <Helmet>
         <title>MainMenu</title>
         <meta name="description" content="Description of MainMenu" />
@@ -45,7 +45,7 @@ export function MainMenu() {
           <h1>Reading Comprehension</h1>
         </CardButton>
       </OptionsWrapper>
-    </CenteredContentWrapper>
+    </ColumnWrapper>
   );
 }
 
