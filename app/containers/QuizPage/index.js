@@ -65,7 +65,7 @@ export function QuizPage({
         <title>QuizPage</title>
         <meta name="description" content="Description of QuizPage" />
       </Helmet>
-      <Header title={leftTitle} title2={rightTitle} />
+      <Header title={leftTitle} title2={rightTitle} exitIcon />
       {/* TODO: Add error handling */}
       {questionIndex < questions.length && (
         <div>

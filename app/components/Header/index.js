@@ -6,14 +6,18 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import ExitIcon from '../ExitIcon';
 import Div from './Div';
 import Span from './Span';
 
-function Header({ title, title2 }) {
+function Header({ title, title2, exitIcon }) {
   return (
     <Div>
       <Span>{title}</Span>
-      <Span>{title2}</Span>
+      <Div>
+        <Span>{title2}</Span>
+        {exitIcon && <ExitIcon />}
+      </Div>
     </Div>
   );
 }
@@ -21,6 +25,7 @@ function Header({ title, title2 }) {
 Header.propTypes = {
   title: PropTypes.string,
   title2: PropTypes.string,
+  exitIcon: PropTypes.bool,
 };
 
 export default Header;
