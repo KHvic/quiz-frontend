@@ -6,9 +6,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Enabled from './Enabled';
-import Correct from './Correct';
-import Incorrect from './Incorrect';
+import Enabled from './Primary';
+import Correct from './Success';
+import Incorrect from './Error';
+import Default from './Default';
 
 function Button({ enabled, text, click, type }) {
   if (type === 'success') {
@@ -25,10 +26,17 @@ function Button({ enabled, text, click, type }) {
       </Incorrect>
     );
   }
+  if (type === 'primary') {
+    return (
+      <Enabled onClick={click} on={enabled}>
+        {text}
+      </Enabled>
+    );
+  }
   return (
-    <Enabled onClick={click} on={enabled}>
+    <Default onClick={click} on={enabled}>
       {text}
-    </Enabled>
+    </Default>
   );
 }
 

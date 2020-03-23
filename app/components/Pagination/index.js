@@ -21,8 +21,9 @@ function Pagination({
 }) {
   const pages = [];
   for (let i = 1; i <= questionCount; i += 1) {
-    let type = 'primary';
+    let type = 'default';
     if (reviewMode) type = correctQuestions.has(i - 1) ? 'success' : 'error';
+    else if (correctQuestions.has(i - 1)) type = 'primary';
     pages.push(
       <Button
         text={i.toString()}
@@ -49,12 +50,12 @@ function Pagination({
 
 function getButton(submit, nextPage, isLast, reviewMode) {
   if (reviewMode) {
-    return <Button text={ExitText} enabled click={submit} />;
+    return <Button text={ExitText} enabled click={submit} type="primary" />;
   }
   return isLast ? (
-    <Button text={DoneText} enabled click={submit} />
+    <Button text={DoneText} enabled click={submit} type="primary" />
   ) : (
-    <Button text={NextText} enabled click={nextPage} />
+    <Button text={NextText} enabled click={nextPage} type="primary" />
   );
 }
 

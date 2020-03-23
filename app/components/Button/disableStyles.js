@@ -4,7 +4,7 @@ import buttonStyles from './buttonStyles';
 const disableStyles = css`
   ${buttonStyles}
   cursor: not-allowed;
-  opacity: 0.8;
+  opacity: 0.65;
 
   &:hover:after {
     opacity: 1;

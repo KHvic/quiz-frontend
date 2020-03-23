@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import buttonStyles from './buttonStyles';
 
-const Correct = styled.div`
+const Success = styled.div`
   ${buttonStyles}
   color: #42db9d;
   border-color: #42db9d;
@@ -20,4 +20,4 @@ const Correct = styled.div`
   }
 `;
 
-export default Correct;
+export default Success;

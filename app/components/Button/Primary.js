@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import buttonStyles from './buttonStyles';
 import disableStyles from './disableStyles';
 
-const Enabled = styled.div`
+const Primary = styled.div`
   ${props => (props.on ? buttonStyles : disableStyles)}
   color: #991be2;
   border-color: #991be2;
@@ -21,4 +21,4 @@ const Enabled = styled.div`
   }
 `;
 
-export default Enabled;
+export default Primary;

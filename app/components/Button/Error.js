@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import buttonStyles from './buttonStyles';
 
-const Incorrect = styled.div`
+const Error = styled.div`
   ${buttonStyles}
   color: #e60036;
   border-color: #e60036;
@@ -20,4 +20,4 @@ const Incorrect = styled.div`
   }
 `;
 
-export default Incorrect;
+export default Error;

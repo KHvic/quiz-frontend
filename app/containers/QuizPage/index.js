@@ -88,6 +88,7 @@ export function QuizPage({
             selectPage={selectQuestion}
             reviewMode={reviewMode}
             correctQuestions={correctQuestions}
+            selections={selections}
           />
         </div>
       )}

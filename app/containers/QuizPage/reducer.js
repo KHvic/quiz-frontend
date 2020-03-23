@@ -15,7 +15,7 @@ import {
 
 export const initialState = {
   questions: [],
-  correctQuestions: new Set(),
+  correctQuestions: new Set(), // also used to determine whether a question has been completed
   questionCount: 0,
   subcat: '',
   currentQuestion: 0,
@@ -51,8 +51,15 @@ const quizPageReducer = (state = initialState, action) =>
         const { optionIndex, choice } = { ...action };
         if (draft.selections[questionIndex][optionIndex].has(choice)) {
           draft.selections[questionIndex][optionIndex].delete(choice);
+          draft.correctQuestions.delete(questionIndex);
         } else {
           draft.selections[questionIndex][optionIndex].add(choice);
+          let questionCompleted = true;
+          state.questions[questionIndex].answer.forEach((answer, idx) => {
+            if (draft.selections[questionIndex][idx].size < answer.length)
+              questionCompleted = false;
+          });
+          if (questionCompleted) draft.correctQuestions.add(questionIndex);
         }
         break;
       }
