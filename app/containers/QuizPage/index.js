@@ -87,6 +87,7 @@ export function QuizPage({
             submit={reviewMode ? exit : submitQuiz}
             selectPage={selectQuestion}
             reviewMode={reviewMode}
+            correctQuestions={correctQuestions}
           />
         </div>
       )}

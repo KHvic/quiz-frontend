@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { css } from 'styled-components';
 import buttonStyles from './buttonStyles';
 
-const Enabled = styled.div`
+const disableStyles = css`
   ${buttonStyles}
   cursor: not-allowed;
   opacity: 0.8;
@@ -14,4 +14,4 @@ const Enabled = styled.div`
   }
 `;
 
-export default Enabled;
+export default disableStyles;

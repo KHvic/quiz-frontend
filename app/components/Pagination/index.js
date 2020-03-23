@@ -17,15 +17,19 @@ function Pagination({
   selectPage,
   submit,
   reviewMode,
+  correctQuestions,
 }) {
   const pages = [];
   for (let i = 1; i <= questionCount; i += 1) {
+    let type = 'primary';
+    if (reviewMode) type = correctQuestions.has(i - 1) ? 'success' : 'error';
     pages.push(
       <Button
         text={i.toString()}
         enabled={i - 1 !== questionIndex}
         click={() => selectPage(i - 1)}
         key={i}
+        type={type}
       />,
     );
   }
@@ -60,6 +64,7 @@ Pagination.propTypes = {
   submit: PropTypes.func,
   selectPage: PropTypes.func,
   reviewMode: PropTypes.bool,
+  correctQuestions: PropTypes.instanceOf(Set),
 };
 
 export default Pagination;
