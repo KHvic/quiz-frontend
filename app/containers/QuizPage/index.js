@@ -27,17 +27,20 @@ import {
   makeSelectCurrentQuestion,
   makeSelectSelections,
   makeSelectReviewMode,
+  makeSelectCorrectQuestions,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import QuizContainer from '../../components/QuizContainer';
 import Pagination from '../../components/Pagination';
 import Header from '../../components/Header';
+import ScoreText from '../../components/ScoreText';
 import messages from './messages';
 
 export function QuizPage({
   changeSubcat,
   selectOptionChoice,
+  correctQuestions,
   match,
   location,
   questions,
@@ -75,6 +78,9 @@ export function QuizPage({
             reviewMode={reviewMode}
             selection={selections[questionIndex]}
           />
+          {reviewMode && (
+            <ScoreText score={correctQuestions.size} total={questions.length} />
+          )}
           <Pagination
             questionIndex={questionIndex}
             questionCount={questions.length}
@@ -91,6 +97,7 @@ export function QuizPage({
 QuizPage.propTypes = {
   changeSubcat: PropTypes.func.isRequired,
   selectOptionChoice: PropTypes.func.isRequired,
+  correctQuestions: PropTypes.instanceOf(Set),
   match: PropTypes.object.isRequired,
   location: PropTypes.object,
   questions: PropTypes.array,
@@ -108,6 +115,7 @@ const mapStateToProps = createStructuredSelector({
   questionIndex: makeSelectCurrentQuestion(),
   subcat: makeSelectSubcat(),
   reviewMode: makeSelectReviewMode(),
+  correctQuestions: makeSelectCorrectQuestions(),
 });
 
 function mapDispatchToProps(dispatch) {

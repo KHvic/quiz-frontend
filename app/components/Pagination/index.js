@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DoneText, NextText, ExitText } from './constants';
 import CenteredContentWrapper from '../CenteredContentWrapper';
-import PaginationWrapper from '../PaginationWrapper';
+import RowWrapper from '../RowWrapper';
 import Button from '../Button';
 
 function Pagination({
@@ -38,7 +38,7 @@ function Pagination({
         questionIndex === questionCount - 1,
         reviewMode,
       )}
-      <PaginationWrapper>{pages.length > 1 && pages}</PaginationWrapper>
+      <RowWrapper>{pages.length > 1 && pages}</RowWrapper>
     </CenteredContentWrapper>
   );
 }

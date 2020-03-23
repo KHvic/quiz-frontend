@@ -15,6 +15,7 @@ import {
 
 export const initialState = {
   questions: [],
+  correctQuestions: new Set(),
   questionCount: 0,
   subcat: '',
   currentQuestion: 0,
@@ -62,6 +63,17 @@ const quizPageReducer = (state = initialState, action) =>
         // TODO: add proper submission logic at action.js
         draft.reviewMode = true;
         draft.currentQuestion = 0;
+        draft.correctQuestions = new Set();
+        state.questions.forEach((question, idx) => {
+          let correct = true;
+          // TODO: rename to answers after backend change
+          question.answer.forEach((answer, optionIdx) => {
+            answer.forEach(choice => {
+              correct = correct && draft.selections[idx][optionIdx].has(choice);
+            });
+          });
+          if (correct) draft.correctQuestions.add(idx);
+        });
         break;
     }
   });

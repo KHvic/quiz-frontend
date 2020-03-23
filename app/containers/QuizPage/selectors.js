@@ -43,6 +43,12 @@ const makeSelectQuestionCount = () =>
     substate => substate.questionCount,
   );
 
+const makeSelectCorrectQuestions = () =>
+  createSelector(
+    selectQuizPageDomain,
+    substate => substate.correctQuestions,
+  );
+
 const makeSelectError = () =>
   createSelector(
     selectQuizPageDomain,
@@ -56,5 +62,6 @@ export {
   makeSelectCurrentQuestion,
   makeSelectReviewMode,
   makeSelectQuestionCount,
+  makeSelectCorrectQuestions,
   makeSelectError,
 };
