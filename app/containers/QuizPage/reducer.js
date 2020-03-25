@@ -6,7 +6,6 @@
 import produce from 'immer';
 import {
   SET_SUBCAT,
-  LOAD_QUESTIONS_ERROR,
   LOAD_QUESTIONS_SUCCESS,
   SELECT_QUESTION_CHOICE,
   SWITCH_QUESTION,
@@ -20,7 +19,6 @@ export const initialState = {
   subcat: '',
   currentQuestion: 0,
   selections: [],
-  error: null,
   reviewMode: false,
 };
 
@@ -31,9 +29,6 @@ const quizPageReducer = (state = initialState, action) =>
       case SET_SUBCAT:
         draft.subcat = action.subcat;
         draft.questionCount = action.count;
-        break;
-      case LOAD_QUESTIONS_ERROR:
-        draft.error = action.error;
         break;
       case LOAD_QUESTIONS_SUCCESS:
         draft.questions = action.questions;

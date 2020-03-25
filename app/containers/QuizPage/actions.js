@@ -7,7 +7,6 @@
 import {
   SET_SUBCAT,
   LOAD_QUESTIONS_SUCCESS,
-  LOAD_QUESTIONS_ERROR,
   SELECT_QUESTION_CHOICE,
   SWITCH_QUESTION,
   SUBMIT_SELECTIONS,
@@ -26,13 +25,6 @@ export function questionsLoaded(questions) {
   return {
     type: LOAD_QUESTIONS_SUCCESS,
     questions,
-  };
-}
-
-export function questionsLoadingError(error) {
-  return {
-    type: LOAD_QUESTIONS_ERROR,
-    error,
   };
 }
 

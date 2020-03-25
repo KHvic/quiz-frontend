@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import queryString from 'query-string';
+import LoadingIndicator from 'components/LoadingIndicator';
 import {
   setSubcat,
   selectQuestionChoice,
@@ -58,6 +59,9 @@ export function QuizPage({
     const params = queryString.parse(location.search);
     changeSubcat(match.params.subcat, params.count);
   }, []);
+  if (!questions.length) {
+    return <LoadingIndicator />;
+  }
   const leftTitle = messages.catMap[match.params.subcat];
   const rightTitle = reviewMode
     ? `Reviewing Quiz  `
@@ -69,29 +73,27 @@ export function QuizPage({
         <meta name="description" content="Description of QuizPage" />
       </Helmet>
       <Header title={leftTitle} title2={rightTitle} exitIcon />
-      {/* TODO: Add error handling */}
-      {questionIndex < questions.length && (
-        <div>
-          <QuizContainer
-            {...questions[questionIndex]}
-            onSelectChoice={selectOptionChoice}
-            reviewMode={reviewMode}
-            selection={selections[questionIndex]}
-          />
-          {reviewMode && (
-            <ScoreText score={correctQuestions.size} total={questions.length} />
-          )}
-          <Pagination
-            questionIndex={questionIndex}
-            questionCount={questions.length}
-            submit={reviewMode ? exit : submitQuiz}
-            selectPage={selectQuestion}
-            reviewMode={reviewMode}
-            correctQuestions={correctQuestions}
-            selections={selections}
-          />
-        </div>
-      )}
+
+      <div>
+        <QuizContainer
+          {...questions[questionIndex]}
+          onSelectChoice={selectOptionChoice}
+          reviewMode={reviewMode}
+          selection={selections[questionIndex]}
+        />
+        {reviewMode && (
+          <ScoreText score={correctQuestions.size} total={questions.length} />
+        )}
+        <Pagination
+          questionIndex={questionIndex}
+          questionCount={questions.length}
+          submit={reviewMode ? exit : submitQuiz}
+          selectPage={selectQuestion}
+          reviewMode={reviewMode}
+          correctQuestions={correctQuestions}
+          selections={selections}
+        />
+      </div>
     </div>
   );
 }
