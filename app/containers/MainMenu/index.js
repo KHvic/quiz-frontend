@@ -33,7 +33,7 @@ export function MainMenu() {
         <title>MainMenu</title>
         <meta name="description" content="Description of MainMenu" />
       </Helmet>
-      <Header {...messages.greVerbalHeader} />
+      <Header {...messages.greVerbalHeader} iconClass="fa fa-university" />
       <OptionsWrapper>
         <CardButton to="/quiz/TC1?count=10" idx={0}>
           <h1>Text Completion</h1>
@@ -45,7 +45,7 @@ export function MainMenu() {
           <h1>Reading Comprehension</h1>
         </CardButton>
       </OptionsWrapper>
-      <Header {...messages.greVerbalPracticeHeader} />
+      <Header {...messages.greVerbalPracticeHeader} iconClass="fa fa-book" />
       <OptionsWrapper>
         <CardButton to="/quiz/TC1?count=1" idx={0}>
           <h1>Text Completion</h1>

@@ -72,7 +72,12 @@ export function QuizPage({
         <title>QuizPage</title>
         <meta name="description" content="Description of QuizPage" />
       </Helmet>
-      <Header title={leftTitle} title2={rightTitle} exitIcon />
+      <Header
+        title={leftTitle}
+        title2={rightTitle}
+        exitIcon
+        iconClass="fa fa-edit"
+      />
 
       <div>
         <QuizContainer

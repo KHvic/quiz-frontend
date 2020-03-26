@@ -27,6 +27,7 @@ const quizPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case SET_SUBCAT:
+        // draft = { ...initialState };
         draft.subcat = action.subcat;
         draft.questionCount = action.count;
         break;
@@ -62,7 +63,6 @@ const quizPageReducer = (state = initialState, action) =>
         draft.currentQuestion = action.nextQuestionIndex;
         break;
       case SUBMIT_SELECTIONS:
-        // TODO: add proper submission logic at action.js
         draft.reviewMode = true;
         draft.currentQuestion = 0;
         draft.correctQuestions = new Set();
