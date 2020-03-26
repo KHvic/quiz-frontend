@@ -30,7 +30,7 @@ export function MainMenu() {
   return (
     <ColumnWrapper>
       <Helmet>
-        <title>MainMenu</title>
+        <title>GRE Mock Practice Test</title>
         <meta name="description" content="Description of MainMenu" />
       </Helmet>
       <Header {...messages.greVerbalHeader} iconClass="fa fa-university" />
