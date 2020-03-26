@@ -31,7 +31,7 @@ export function MainMenu() {
     <ColumnWrapper>
       <Helmet>
         <title>GRE Mock Practice Test</title>
-        <meta name="description" content="Description of MainMenu" />
+        <meta name="description" content="GRE Mock Practice Test" />
       </Helmet>
       <Header {...messages.greVerbalHeader} iconClass="fa fa-university" />
       <OptionsWrapper>
@@ -41,9 +41,9 @@ export function MainMenu() {
         <CardButton to="/quiz/SE?count=10" idx={1}>
           <h1>Sentence Equivalence</h1>
         </CardButton>
-        <CardButton idx={2}>
+        {/* <CardButton idx={2}>
           <h1>Reading Comprehension</h1>
-        </CardButton>
+        </CardButton> */}
       </OptionsWrapper>
       <Header {...messages.greVerbalPracticeHeader} iconClass="fa fa-book" />
       <OptionsWrapper>
@@ -53,9 +53,9 @@ export function MainMenu() {
         <CardButton to="/quiz/SE?count=1" idx={1}>
           <h1>Sentence Equivalence</h1>
         </CardButton>
-        <CardButton idx={2}>
+        {/* <CardButton idx={2}>
           <h1>Reading Comprehension</h1>
-        </CardButton>
+        </CardButton> */}
       </OptionsWrapper>
     </ColumnWrapper>
   );
