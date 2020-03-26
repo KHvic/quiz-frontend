@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import buttonStyles from './buttonStyles';
+import disableStyles from './disableStyles';
 
 const Success = styled.div`
-  ${buttonStyles}
+  ${props => (props.on ? buttonStyles : disableStyles)}
   color: #42db9d;
   border-color: #42db9d;
   box-shadow: 6px 0 0 0 #42db9d, 6px 6px 0 0 #42db9d, 0 6px 0 0 #42db9d;

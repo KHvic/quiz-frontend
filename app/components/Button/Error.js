@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import buttonStyles from './buttonStyles';
+import disableStyles from './disableStyles';
 
 const Error = styled.div`
-  ${buttonStyles}
+  ${props => (props.on ? buttonStyles : disableStyles)}
   color: #e60036;
   border-color: #e60036;
   box-shadow: 6px 0 0 0 #e60036, 6px 6px 0 0 #e60036, 0 6px 0 0 #e60036;

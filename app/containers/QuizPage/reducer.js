@@ -50,7 +50,7 @@ const quizPageReducer = (state = initialState, action) =>
         } else {
           draft.selections[questionIndex][optionIndex].add(choice);
           let questionCompleted = true;
-          state.questions[questionIndex].answer.forEach((answer, idx) => {
+          state.questions[questionIndex].answers.forEach((answer, idx) => {
             if (draft.selections[questionIndex][idx].size < answer.length)
               questionCompleted = false;
           });
@@ -68,8 +68,7 @@ const quizPageReducer = (state = initialState, action) =>
         draft.correctQuestions = new Set();
         state.questions.forEach((question, idx) => {
           let correct = true;
-          // TODO: rename to answers after backend change
-          question.answer.forEach((answer, optionIdx) => {
+          question.answers.forEach((answer, optionIdx) => {
             answer.forEach(choice => {
               correct = correct && draft.selections[idx][optionIdx].has(choice);
             });

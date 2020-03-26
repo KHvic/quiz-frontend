@@ -14,7 +14,7 @@ import McqsWrapper from '../McqsWrapper';
 function QuizContainer({
   description,
   options,
-  answer, // TODO: rename to answers after backend change
+  answers,
   selection,
   onSelectChoice,
   reviewMode,
@@ -28,7 +28,7 @@ function QuizContainer({
             // eslint-disable-next-line react/no-array-index-key
             key={idx}
             choices={option}
-            answer={answer[idx]}
+            answer={answers[idx]}
             selected={selection[idx]}
             clickChoice={choice => onSelectChoice(idx, choice)}
             reviewMode={reviewMode}
@@ -43,7 +43,7 @@ QuizContainer.propTypes = {
   description: PropTypes.string,
   options: PropTypes.array,
   selection: PropTypes.array,
-  answer: PropTypes.array,
+  answers: PropTypes.array,
   onSelectChoice: PropTypes.func,
   reviewMode: PropTypes.bool,
 };
