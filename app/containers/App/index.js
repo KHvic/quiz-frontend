@@ -12,7 +12,6 @@ import { Switch, Route } from 'react-router-dom';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import MainMenu from 'containers/MainMenu/Loadable';
 import QuizPage from 'containers/QuizPage/Loadable';
 import ErrorPage from 'containers/ErrorPage/Loadable';
@@ -29,7 +28,7 @@ export default function App() {
         <Route exact path="/" component={MainMenu} />
         <Route exact path="/quiz/:subcat" component={QuizPage} />
         <Route path="/error" component={ErrorPage} />
-        <Route component={NotFoundPage} />
+        <Route component={ErrorPage} />
       </Switch>
       <GlobalStyle />
     </div>
