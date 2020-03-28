@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY internals/ ./internals/
 
-RUN npm install
+RUN npm install --only=prod
 COPY . ./
 RUN npm run build
 

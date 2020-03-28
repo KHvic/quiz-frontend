@@ -27,10 +27,11 @@ const quizPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case SET_SUBCAT:
-        // draft = { ...initialState };
-        draft.subcat = action.subcat;
-        draft.questionCount = action.count;
-        break;
+        return {
+          ...initialState,
+          subcat: action.subcat,
+          questionCount: action.count,
+        };
       case LOAD_QUESTIONS_SUCCESS:
         draft.questions = action.questions;
         draft.reviewMode = false;
