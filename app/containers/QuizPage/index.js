@@ -69,8 +69,8 @@ export function QuizPage({
   return (
     <div>
       <Helmet>
-        <title>QuizPage</title>
-        <meta name="description" content="Description of QuizPage" />
+        <title>GRE Mock Practice Test</title>
+        <meta name="description" content="GRE Mock Practice Test" />
       </Helmet>
       <Header
         title={leftTitle}
