@@ -30,8 +30,12 @@ export function MainMenu() {
   return (
     <ColumnWrapper>
       <Helmet>
-        <title>GRE Mock Practice Test</title>
-        <meta name="description" content="GRE Mock Practice Test" />
+        <title>Free GRE mock test | practice online with score</title>
+        <meta
+          name="description"
+          content="Practice with over 500 free actual GRE questions to improve your score.
+Receive your score and keep improving with the provided answers."
+        />
       </Helmet>
       <Header {...messages.greVerbalHeader} iconClass="fa fa-university" />
       <OptionsWrapper>

@@ -11,7 +11,7 @@ export const scope = 'app.containers.QuizPage';
 export default defineMessages({
   catMap: {
     TC1: 'Text Completion Quiz',
-    RC: 'Reading Comprehension',
-    SE: 'Sentence Equivalence',
+    RC: 'Reading Comprehension Quiz',
+    SE: 'Sentence Equivalence Quiz',
   },
 });

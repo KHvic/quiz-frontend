@@ -7,7 +7,6 @@
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -68,10 +67,6 @@ export function QuizPage({
     : `Q${questionIndex + 1}/${questions.length}  `;
   return (
     <div>
-      <Helmet>
-        <title>GRE Mock Practice Test</title>
-        <meta name="description" content="GRE Mock Practice Test" />
-      </Helmet>
       <Header
         title={leftTitle}
         title2={rightTitle}
