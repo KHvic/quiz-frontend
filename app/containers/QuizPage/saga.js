@@ -10,7 +10,7 @@ import { makeSelectSubcat, makeSelectQuestionCount } from './selectors';
 export function* getQuestions() {
   const subcat = yield select(makeSelectSubcat());
   const count = yield select(makeSelectQuestionCount());
-  const requestURL = `http://gremock.com/api/v1/category/${subcat}/questions?count=${count}`;
+  const requestURL = `https://gremock.com/api/v1/category/${subcat}/questions?count=${count}`;
   try {
     const questions = yield call(request, requestURL);
     yield put(questionsLoaded(questions.data));
